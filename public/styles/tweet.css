@@ -1,0 +1,81 @@
+#tweets-container {
+    margin: 0 2em;
+}
+
+.tweet {
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    margin: 10px 0px;
+}
+
+#tweets-container .tweet header {
+    display: block;
+    background-color: #f3f3f3;
+    padding: 10px;
+    overflow: auto;
+}
+
+.tweet header .profile-picture {
+    float: left;
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.tweet header .full-name {
+    float: left;
+    margin-top: 0px;
+    margin-left: 5px;
+    color: #657e85;
+}
+
+.tweet header .username {
+    float: right;
+    color: #a1a1a1;
+    font-size: 0.8em;
+}
+
+.tweet .tweet-content {
+    display: table-cell;
+    word-break: break-all;
+    margin: 0;
+    padding: 10px;
+    height: 100px;
+    vertical-align: middle;
+}
+
+.tweet hr {
+    padding: 0;
+    margin: 0;
+}
+
+.tweet footer {
+    padding: 10px;
+}
+
+.tweet footer .post-time {
+    margin: 0;
+    font-size: 0.7em;
+}
+
+.tweet footer .tweet-interact {
+    visibility: hidden;
+    margin: 0;
+    text-align: right;
+    font-size: 0.7em;
+    float: right;
+}
+
+.tweet:hover .tweet-interact {
+    visibility: visible;
+}
+
+.tweet:hover .full-name {
+    color: #234751;
+}
+
+.tweet:hover {
+    border: 1px solid gold;
+    box-shadow: 1px 1px gold;
+}
