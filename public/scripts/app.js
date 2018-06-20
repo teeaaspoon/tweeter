@@ -111,6 +111,8 @@ $(document).ready(function() {
                 type: "POST",
                 data: tweetContent
             }).then(function() {
+                //empty the text area
+                $(".container .new-tweet form textarea").val("");
                 //render all the tweets again
                 loadTweets();
             });
