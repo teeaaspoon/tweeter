@@ -4,6 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// this function creates the tweet and returns a string of html
 function createTweetElement(tweetObject) {
     const fullName = tweetObject["user"]["name"];
     const profilePicture = tweetObject["user"]["avatars"]["large"];
@@ -33,14 +34,14 @@ function createTweetElement(tweetObject) {
         </footer>
         </article>`;
 }
-
+// this function loops through the database renders a tweet for each entry
 function renderTweets(arrayOfTweetObjects) {
     arrayOfTweetObjects.forEach(entry => {
         $("#tweets-container").prepend(createTweetElement(entry));
     });
 }
-
-function fetchTweets() {
+// this function is an ajax request to load all the tweets
+function loadTweets() {
     $.ajax({
         url: "/tweets",
         type: "GET"
@@ -51,22 +52,53 @@ function fetchTweets() {
         renderTweets(data);
     });
 }
+// this function uses jQuery to display a flash message for errors
+function errorFlashMessage(message) {
+    const errorMessage = document.querySelector(".error-flash-message");
+    errorMessage.innerHTML = message;
+
+    $(".error-flash-message").fadeIn("normal", function() {
+        $(this)
+            .delay(800)
+            .fadeOut("slow");
+    });
+}
+
+// this function checks if the tweet is valid
+function validateTweet(textArea) {
+    if (textArea === "") {
+        errorFlashMessage("Sorry, we didn't detect a tweet");
+
+        return false;
+    }
+    if (textArea.length > 140) {
+        errorFlashMessage("Sorry, your tweet was over 140 characters long");
+
+        return false;
+    }
+    return true;
+}
 
 $(document).ready(function() {
     // render all the tweets first.
-    fetchTweets();
+    loadTweets();
 
     // listen for form submit
     $("form").on("submit", function(event) {
         event.preventDefault();
         let tweetContent = $(event.target).serialize();
-        $.ajax({
-            url: "/tweets",
-            type: "POST",
-            data: tweetContent
-        }).then(function() {
-            //render all the tweets again
-            fetchTweets();
-        });
+        let textAreaContent = $(event.target)
+            .children("textarea")
+            .val();
+        if (validateTweet(textAreaContent)) {
+            $.ajax({
+                url: "/tweets",
+                type: "POST",
+                data: tweetContent
+            }).then(function() {
+                //render all the tweets again
+                loadTweets();
+            });
+        }
     });
 });

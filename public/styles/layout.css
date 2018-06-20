@@ -34,3 +34,10 @@ main.container {
     margin-left: auto;
     margin-right: auto;
 }
+
+.container .error-flash-message {
+    display: none;
+    background-color: #ffb2b2;
+    color: white;
+    font-style: bold;
+}
