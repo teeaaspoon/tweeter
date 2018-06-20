@@ -12,15 +12,22 @@ function createTweetElement(tweetObject) {
     const tweetContent = tweetObject["content"]["text"];
     const postTime = tweetObject["created_at"];
 
+    // this function escapes all insecure text
+    function escape(str) {
+        var div = document.createElement("div");
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    }
+
     return `
     <article class="tweet">
         <header>
-          <img src="${profilePicture}" alt="" class="profile-picture">
-          <h3 class="full-name">${fullName}</h3>
-          <span class="username">${handle}</span>
+          <img src="${escape(profilePicture)}" alt="" class="profile-picture">
+          <h3 class="full-name">${escape(fullName)}</h3>
+          <span class="username">${escape(handle)}</span>
         </header>
 
-        <p class="tweet-content">${tweetContent}</p>
+        <p class="tweet-content">${escape(tweetContent)}</p>
         <hr>
         <footer>
 
@@ -68,12 +75,10 @@ function errorFlashMessage(message) {
 function validateTweet(textArea) {
     if (textArea === "") {
         errorFlashMessage("Sorry, we didn't detect a tweet");
-
         return false;
     }
     if (textArea.length > 140) {
         errorFlashMessage("Sorry, your tweet was over 140 characters long");
-
         return false;
     }
     return true;
@@ -90,6 +95,7 @@ $(document).ready(function() {
         let textAreaContent = $(event.target)
             .children("textarea")
             .val();
+        // only posts tweet when it is a valid tweet
         if (validateTweet(textAreaContent)) {
             $.ajax({
                 url: "/tweets",
