@@ -21,3 +21,25 @@ nav {
     font-size: 2em;
     line-height: 80px;
 }
+
+#nav-bar .compose-tweet-button {
+    margin-top: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    width: 150px;
+    height: 60px;
+    margin-left: auto;
+    margin-right: 0;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#nav-bar .compose-tweet-button span {
+    line-height: 60px;
+    font-size: 1.5em;
+    color: #00a087;
+}
+
+#nav-bar .compose-tweet-button:hover {
+    background-color: white;
+}

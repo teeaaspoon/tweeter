@@ -73,7 +73,7 @@ function errorFlashMessage(message) {
 
 // this function checks if the tweet is valid
 function validateTweet(textArea) {
-    if (textArea === "") {
+    if (!textArea) {
         errorFlashMessage("Sorry, we didn't detect a tweet");
         return false;
     }
@@ -87,6 +87,15 @@ function validateTweet(textArea) {
 $(document).ready(function() {
     // render all the tweets first.
     loadTweets();
+
+    // listen for compose button
+    $(".compose-tweet-button").on("click", function(event) {
+        $(".container .new-tweet").slideToggle("normal", function() {
+            $(this)
+                .find("textarea")
+                .focus();
+        });
+    });
 
     // listen for form submit
     $("form").on("submit", function(event) {

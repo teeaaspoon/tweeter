@@ -30,14 +30,14 @@ body {
 main.container {
     width: 450px;
     background-color: white;
-    margin-top: 80px;
+    padding-top: 140px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .container .error-flash-message {
     display: none;
-    background-color: #ffb2b2;
+    background-color: pink;
     color: white;
-    font-style: bold;
+    font-weight: 600;
 }
