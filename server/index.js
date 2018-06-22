@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
     nodeSassMiddleware({
         src: path.join(__dirname, "./scss"),
-        dest: path.join(__dirname, "../public/styles"),
+        dest: path.join(__dirname, "../public"),
         debug: true,
         outputStyle: "compressed"
     })

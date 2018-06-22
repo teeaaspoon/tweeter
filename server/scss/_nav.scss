@@ -14,17 +14,32 @@ nav {
         height: 80px;
         width: 80px;
     }
+
     .header {
         margin-left: 10px;
         font-size: 2em;
-        line-height: 80px;
+        flex-grow: 1;
+        align-self: center;
     }
+
     .compose-tweet-button {
         background-color: rgba(255, 255, 255, 0.9);
+        width: 150px;
+        height: 60px;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+
+        &:hover {
+            background-color: white;
+        }
 
         span {
             font-size: 1.5em;
             color: #00a087;
+            align-self: center;
         }
     }
 }
