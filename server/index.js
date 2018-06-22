@@ -9,10 +9,23 @@ const app = express();
 const MongoClient = require("mongodb").MongoClient;
 const MONGODB_URI = "mongodb://localhost:27017/";
 
+// SASS
+const path = require("path");
+const nodeSassMiddleware = require("node-sass-middleware");
+
 // database name
 const dbName = "tweeter";
 
 app.use(bodyParser.urlencoded({ extended: true }));
+// Put SASS before express.static
+app.use(
+    nodeSassMiddleware({
+        src: path.join(__dirname, "./scss"),
+        dest: path.join(__dirname, "../public/styles"),
+        debug: true,
+        outputStyle: "compressed"
+    })
+);
 app.use(express.static("public"));
 
 // Connect to Mongo
